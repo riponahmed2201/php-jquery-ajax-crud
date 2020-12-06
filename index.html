@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PHP AJAX JQuery CRUD</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="alert-info text-center mb-5 p-3">
+            AJAX -- PHP -- Bootstrap -- JQuery (CRUD)
+        </h1>
+        <div class="row">
+            <form id="myform" class="col-sm-5" id="myform" action="">
+                <h3 class="alert-warning text-center p-2">Add/Update Student</h3>
+                <div>
+                    <label for="nameid" class="form-label"> Name</label>
+                    <input type="text" class="form-contro" id="nameid">
+                </div>
+                <div>
+                    <label for="emailid" class="form-label"> Email</label>
+                    <input type="email" class="form-contro" id="emailid">
+                </div>
+                <div>
+                    <label for="password" class="form-label"> Password</label>
+                    <input type="password" class="form-contro" id="password">
+                </div>
+                <div class="mt-5">
+                    <button id="btnadd" class="btn btn-primary">Save</button>
+                </div>
+                <div id="msg"></div>
+            </form>
+
+            <div class="col-sm-7 text-center">
+                <h3 class="alert-warning p-2">Show Student Information</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="table"></tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/poper_min.js"></script>
+    <script src="js/jqajax.js"></script>
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
