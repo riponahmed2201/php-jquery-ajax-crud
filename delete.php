@@ -4,7 +4,6 @@
 
     $data = stripslashes(file_get_contents("php://input"));
     $myData = json_decode($data, true);
-    // $id = $myData['id'];
     $id = $myData['id'];
 
     //Deleting Student 

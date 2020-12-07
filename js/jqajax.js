@@ -22,7 +22,7 @@ function showData(){
 
                 output += "<tr><td>" + x[i].id + "</td><td>" + x[i].name
                  + "</td><td>" + x[i].email + "</td><td>" + x[i].password 
-                 + "</td> <td> <button class='btn btn-warning btn-sm btn-edit'>Edit</button> <button class='btn btn-danger btn-sm btn-delete' data-sid=" + x[i].id + "> Delete </button> </td></tr>";
+                 + "</td> <td> <button class='btn btn-warning btn-sm btn-edit' data-sid=" + x[i].id + ">Edit</button> <button class='btn btn-danger btn-sm btn-delete' data-sid=" + x[i].id + "> Delete </button> </td></tr>";
             }
             $('tbody').html(output);
         }
@@ -35,16 +35,12 @@ showData();
 $("#btnadd").click(function(e){
     e.preventDefault();
     console.log("Save button clicked");
-
+    let sid = $("#stuid").val();
     let nm = $("#nameid").val();
     let em = $("#emailid").val();
     let pw = $("#password").val();
 
-    // console.log(nm);
-    // console.log(em);
-    // console.log(pw);
-
-    myData = {name:nm, email:em, password:pw};
+    myData = {id:sid,name:nm, email:em, password:pw};
     // console.log(myData);
 
     $.ajax({
@@ -52,7 +48,7 @@ $("#btnadd").click(function(e){
         method:"POST",
         data:JSON.stringify(myData),
         success:function(data){
-            // console.log(data);
+            console.log(data);
             msg = "<div class='alert alert-dark mt-3'>"+ data + "</div>";
             $("#msg").html(msg);
             $("#myform")[0].reset();
@@ -85,7 +81,29 @@ $("#btnadd").click(function(e){
             $("#msg").html(msg);
             // showData(); // when this function call and data deleted then table refresh
             
-        }
+        },
     });
  });
+
+
+  // Ajax Request for Editing Data
+  $("tbody").on("click", ".btn-edit", function(){
+        // console.log(" Edit Button Clicked");
+        let id = $(this).attr("data-sid");
+        // console.log(id);
+        myData = {id:id};
+        $.ajax({
+            url:"edit.php",
+            method:"POST",
+            dataType:"json",
+            data: JSON.stringify(myData),
+            success: function(data){
+                // console.log(data.name);
+                $("#stuid").val(data.id);
+                $("#nameid").val(data.name);
+                $("#emailid").val(data.email);
+                $("#password").val(data.password);
+            },
+        });
+    });
 });
